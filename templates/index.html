@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+<body>
+<!--<div id="loader">-->
+<!--    <div id="timer"></div>-->
+<!--	<progress id='p' value='0' max='100'></progress>-->
+<!--	<output for='p'></output>-->
+<!--</div>-->
+
+<form name="van_gog" id="regForm" action="/neiro" method='POST' enctype="multipart/form-data">
+
+    <h1>Ван гог:</h1>
+    <!-- One "tab" for each step in the form: -->
+    <div class="tab">Выбор файла:
+        <p><input type="file" name='file' onchange="putImage()" id="select_image" placeholder="First name..."
+                  oninput="this.className = ''" value="Выбрать..."></p>
+        <p class="img-block"><img id="target" src=""></p>
+    </div>
+
+    <div class="tab">Выберите изображение для наложения стилей:
+        <p class="img-block">
+            <input type="hidden" name="hidden_img_style" id="hidden_img_style" value="">
+            <img class="img-style" src="{{ url_for('static', filename= 'style_images/img_style.jpg') }}"
+                 onclick="selectImageStyle(this)"/>
+            <img class="img-style" src="{{ url_for('static', filename= 'style_images/img_style2.jpg') }}"
+                 onclick="selectImageStyle(this)"/>
+        </p>
+    </div>
+
+    <div class="tab">Укажите количество итераций выполнения:
+        <p><input id="iteration" name="iteration" type="number" value="0" max="100" placeholder="Количество итераций" onchange="changeIteration(this)"
+                  oninput="this.className = ''"></p>
+        <p>Приблизительное время выполнения: <span id="time">0 мин</span></p>
+    </div>
+
+    <div class="tab">Выполнение:
+        <p>
+            <button type="button" onclick="loadNeiro()">Запуск</button>
+        </p>
+        <p>
+        <div id="loader">
+            <progress id='p' value='0' max='100'></progress>
+            <output for='p'></output>
+        </div>
+        </p>
+        <div class="result-image-block"><img id="result-image" src="" alt=""></div>
+    </div>
+
+    <div style="overflow:auto;">
+        <div style="text-align:center;">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Назад</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Вперел</button>
+            <button type="button" id="startBtn" onclick="start()" style="display:none">Начать заново</button>
+        </div>
+    </div>
+
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+    </div>
+
+    <script src="{{ url_for('static', filename= 'js/script.js') }}"></script>
+</form>
+</body>
+</html>

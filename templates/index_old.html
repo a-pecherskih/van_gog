@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+<body>
+<h1>Hello</h1>
+<form class='upload-form' id='upload-form' action="/" method='POST' enctype="multipart/form-data">
+    <input type="file" name='file' value="Browse...">
+    <input type="submit" value='Upload'>
+</form>
+{% if filename is defined %}
+<img src="{{ url_for('static', filename= 'images/'+filename) }}" alt="">
+{% endif %}
+
+</body>
+</html>
+<!--<script>-->
+<!--    var callFunction;-->
+<!--    function show_and_hide(div_in, div_out){-->
+<!--        var shower = document.getElementById(div_in);-->
+<!--        var hider = document.getElementById(div_out);-->
+
+<!--        var hider_items = hider.children;-->
+<!--        var i;-->
+<!--        for(i = 0; i < hider_items.length; i++){-->
+<!--            hider_items[i].style.animation = "hide 1s";-->
+<!--        }-->
+
+<!--        callFunction = setTimeout(change_div, 1000, div_in, div_out);-->
+
+<!--        var shower_items = shower.children;-->
+<!--        var n;-->
+<!--        for(n = 0; n < shower_items.length; n++){-->
+<!--            shower_items[n].style.animation = "show 1s";-->
+<!--        }-->
+<!--        return true;-->
+<!--    }-->
+<!--</script>-->
